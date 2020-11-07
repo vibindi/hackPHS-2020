@@ -33,12 +33,21 @@ router.get('/oauth-callback', (req, res, next) => {
   axios.post(`https://github.com/login/oauth/access_token`, body, opts1).
     then(async res1 => {
       var token = res1.data['access_token'];
+
+      console.log("\n\n**********")
       console.log('My token:', token);
-      const opts2 = {headers: {authentication: `token ${token}`}};
-      var res2 = await axios.get(`https://api.github.com/users/`, opts2)
+      console.log("**********\n\n")
+
+      const opts2 = {headers: {authorization: `token ${token}`}};
+      var res2 = await axios.get(`https://api.github.com/user`, opts2)
+
+      console.log("\n\n**********")
+      console.log('res2:', res2.data);
+      console.log("**********\n\n")
+
       client.execute(
         'INSERT INTO users (username, token) VALUES (?, ?);',
-        [res2.data['user']['name'], token]
+        [res2.data['login'], token]
       );
       res.json({ ok: 1 });
     }).
