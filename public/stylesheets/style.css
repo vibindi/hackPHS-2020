@@ -3,6 +3,33 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav {
+	width: 100%;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	margin: 0 2%;
+	display: inline;
+  list-style-type: none;
+}
+
+nav a {
+  font-size: 20px;
+  color: black;
+	text-decoration: none;
+}
+
+nav a:hover {
+	text-decoration: none;
+  color: mediumturquoise;
 }

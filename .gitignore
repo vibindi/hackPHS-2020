@@ -2,4 +2,4 @@ node_modules
 .DS_Store
 secure-connect-hackphs.zip
 secure-connect-hackphs
-properties.json
+properties.js
