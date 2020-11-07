@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 const {Client} = require('cassandra-driver');
-const databaseinfo = require('./properties.json');
+const appinfo = require('./properties.json');
 
 const client = new Client({
   cloud: { secureConnectBundle: 'secure-connect-hackphs.zip' },
-  credentials: { username: databaseinfo.username, password: databaseinfo.password }
+  credentials: { username: app.username, password: app.password }
 });
 
 /* GET users listing. */
