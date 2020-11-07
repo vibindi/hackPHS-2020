@@ -7,16 +7,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-const {Client} = require('cassandra-driver');
-const appinfo = require('../properties');
-
-const client = new Client({
-  cloud: { secureConnectBundle: 'secure-connect-hackphs.zip' },
-  credentials: { username: appinfo.username, password: appinfo.password }
-});
-
-client.execute("CREATE TABLE IF NOT EXISTS users ()");
-
 var app = express();
 
 // view engine setup
