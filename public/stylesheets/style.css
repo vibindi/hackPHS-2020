@@ -127,3 +127,7 @@ form input:checked+span {
   color: rgb(225, 225, 225);
   margin: 10px 0px;
 }
+
+.middle {
+  text-align: center;
+}
