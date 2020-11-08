@@ -2,6 +2,7 @@
 ## Submission for HackPHS 2020
 
 Automating github resume building.
+Written by vibindi, scott-22, and iWolf22.
 
 ### How to run locally
 
