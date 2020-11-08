@@ -8,37 +8,28 @@ block content
       h2 Choose your privacy when parsing.
       ul.formlist
         li
-          input(type="radio", name="visibility", value="visibility=public", required="required")
-          p Public repositories only
+          label #[input(type="radio", name="visibility", value="visibility=public", required="required")] #[span Public repositories only]
         li
-          input(type="radio", name="visibility", value="visibility=private")
-          p Private repositories only
+          label #[input(type="radio", name="visibility", value="visibility=private")] #[span Private repositories only]
         li
-          input(type="radio", name="visibility", value="visibility=all")
-          p Public and private repositories
+          label #[input(type="radio", name="visibility", value="visibility=all")] #[span Public and private repositories]
     .affiliation
       h2 Choose your repo affiliation.
       ul.formlist
         li
-          input(type="checkbox", name="affiliation", value="owner")
-          p Repos you own
+          label #[input(type="checkbox", name="affiliation", value="owner")] #[span Repos you own]
         li
-          input(type="checkbox", name="affiliation", value="collaborator")
-          p Repos you've contributed to
+          label #[input(type="checkbox", name="affiliation", value="collaborator")] #[span Repos you've contributed to]
     .sort
       h2 Choose your repo order.
       ul.formlist
         li
-          input(type="radio", name="sort", value="sort=created&direction=desc", required="required")
-          p Most recently created repos
+          label #[input(type="radio", name="sort", value="sort=created&direction=desc", required="required")] #[span Most recently created repos]
         li
-          input(type="radio", name="sort", value="sort=created&direction=asc")
-          p Earliest created repos
+          label #[input(type="radio", name="sort", value="sort=created&direction=asc")] #[span Earliest created repos]
         li
-          input(type="radio", name="sort", value="sort=full_name&direction=asc")
-          p Alphabetical order
+          label #[input(type="radio", name="sort", value="sort=full_name&direction=asc")] #[span Alphabetical order]
         li
-          input(type="radio", name="sort", value="sort=updated&direction=desc")
-          p Most recently updated
+          label #[input(type="radio", name="sort", value="sort=updated&direction=desc")] #[span Most recently updated]
     input#submit(type="submit", value="Submit")
     

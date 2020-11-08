@@ -1,21 +1,28 @@
 body {
-  padding: 25px 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: black;
+  padding: 0px;
+  margin: 0px;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(27, 23, 19);
   color: rgb(225, 225, 225);
 }
 
+.content {
+  padding: 0px 50px;
+}
+
 nav {
-	width: 100%;
+  margin: 0px;
+  height: 60px;
+  vertical-align: text-bottom;
 }
 
 nav ul {
-	margin: 0;
-	padding: 0;
+	margin: auto;
+	padding: 30px;
 }
 
 nav li {
-	margin: 0 2%;
+	margin: 0 10%;
 	display: inline;
 }
 
@@ -27,11 +34,62 @@ nav a {
 
 nav a:hover {
 	text-decoration: none;
-  color: mediumturquoise;
+  color: rgb(21, 88, 85);
 }
 
+div {
+  margin: 65px 0px;
+}
 
+.contact {
+  margin: 25px 0px;
+  padding: 25px;
+  background-color: rgb(21, 88, 85);
+  width: 60%;
+}
+
+.repos {
+  margin: 0px 0px;
+}
+
+.repo {
+  margin: 10px 0px;
+  padding: 20px;
+  background-color: rgb(21, 88, 85);
+  width: auto;
+}
+
+#title {
+  text-align: center;
+  font-size: 80px;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+ul {
+  padding-left: 0px;
+}
 
 li {
   list-style-type: none;
+}
+
+form li {
+  margin: 15px 0;
+}
+
+form label:hover {
+  color:  rgb(38, 173, 167);
+  font-weight: bold;
+}
+
+form input:checked+span {
+  color:  rgb(38, 173, 167);
+  font-weight: bold;
 }

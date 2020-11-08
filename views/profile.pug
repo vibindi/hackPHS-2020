@@ -3,7 +3,7 @@ extends layout
 block content
   h1 Here's your profile, #{user.username}.
   .contact
-    h2 #{user.username}
+    h2 #{user.name}
     if user.email
       h3 #{user.email}
     h3 github.com/#{user.username}
@@ -19,6 +19,7 @@ block content
             else
               p No description provided.
             if repo.languages
+              p Languages:
               ul.languages
                 -for(let lang in repo.languages)
                   li
