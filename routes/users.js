@@ -33,6 +33,8 @@ router.all('/profile', async function(req, res, next) {
     var resdata = (await axios.get(
       `https://api.github.com/user/repos?${form.visibility}&affiliation=${Array.isArray(form.affiliation) ? form.affiliation.join(',') : form.affiliation}&${form.sort}`, opts
     )).data;
+
+    req.app.locals.result = result;
   
     var repos = [];
     let i = 1;
@@ -48,6 +50,8 @@ router.all('/profile', async function(req, res, next) {
       
       repos.push(r);
     }
+
+    req.app.locals.repos = repos;
 
     res.render('profile', {user: result, repos: repos});
   }
