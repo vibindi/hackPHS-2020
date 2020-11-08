@@ -9,7 +9,7 @@ function connect() {
 
   client.connect().
     then(res => client.execute('USE users;')).
-    then(res => client.execute('CREATE TABLE IF NOT EXISTS users (username text PRIMARY KEY, githubtoken text);')).
+    then(res => client.execute('CREATE TABLE IF NOT EXISTS users (username text PRIMARY KEY, name text, email text, githubtoken text);')).
     catch(res => console.log(res));
 
   return client;
