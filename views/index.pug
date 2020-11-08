@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= "MAIN PAGE"
-  p MAIN PAGE
+  h1= "GITHUB RESUME PARSER"
+  if authorised
+    h2 Welcome, #{username}.
+    p Please visit the Users page for your profile.
+  else
+    h2 Log in with GitHub.
+    p Please visit the Users page to get started.

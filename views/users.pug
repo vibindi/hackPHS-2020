@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= "USER PAGE"
-  p USER PAGE
+  h1 Here's your profile, #{username}.
+  div.contact
+    h2 #{name}
+    if email
+      h3 email
+  div.repo
+  
