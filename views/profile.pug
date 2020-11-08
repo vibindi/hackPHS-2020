@@ -28,5 +28,7 @@ block content
               else
                 p.languagemessage #[em No programming languages used.]
             p.url URL: #{repo.url}
+  form.form-horizontal.well(method="post", action="/pdf")
+    input.btn.btn-default(type="submit", value="Create Resume")
 
   

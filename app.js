@@ -8,6 +8,7 @@ const appinfo = require('./properties');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const pdfRouter = require('./routes/pdf');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/pdf', pdfRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
