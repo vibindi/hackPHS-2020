@@ -2,7 +2,7 @@
 
 Automating github resume building.
 
-### How to run
+### How to run locally
 
 1. Clone the repository
 2. Navigate to the repository using your terminal
