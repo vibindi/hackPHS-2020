@@ -1,4 +1,5 @@
-# hackPHS-2020
+# CodeHub
+## Submission for HackPHS 2020
 
 Automating github resume building.
 
