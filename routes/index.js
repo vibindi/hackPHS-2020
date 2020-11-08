@@ -3,16 +3,11 @@ const router = express.Router();
 
 const axios = require('axios')
 
-const {Client} = require('cassandra-driver');
 const appinfo = require('../properties');
+const connectdb = require('../database');
 const app = require('../app');
 
-const client = new Client({
-  cloud: { secureConnectBundle: 'secure-connect-hackphs.zip' },
-  credentials: { username: appinfo.username, password: appinfo.password }
-});
-
-client.execute('CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, token TEXT NOT NULL);');
+const client = connectdb();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -46,9 +41,9 @@ router.get('/oauth-callback', (req, res, next) => {
       console.log("**********\n\n")
 
       client.execute(
-        'INSERT INTO users (username, token) VALUES (?, ?);',
+        'INSERT INTO users (username, githubtoken) VALUES (?, ?);',
         [res2.data['login'], token]
-      );
+      ).then(res => {console.log("\n\nInserted items\n\n");}).catch(res => console.log(res));;
       res.json({ ok: 1 });
     }).
     catch(err => res.status(500).json({ message: err.message }));
