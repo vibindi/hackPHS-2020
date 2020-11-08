@@ -1,29 +1,44 @@
 extends layout
 
 block content
-  h1 Here's your profile, #{user.username}.
-  .contact
-    h2 #{user.username}
-    if user.email
-      h3 #{user.email}
-    h3 github.com/#{user.username}
-  .repos
-    h2 Your first 10 repos.
-    ul
-      each repo in repos
+  h1 Build your profile.
+  form(action="/users/profile", method="post")
+    h2 Up to 10 repos will be included in your profile.
+    .visibility
+      h2 Choose your privacy when parsing.
+      ul.formlist
         li
-          .repo
-            h3 #{repo.name}
-            if repo.description
-              p #{repo.description}
-            else
-              p No description provided.
-            if repo.languages
-              ul.languages
-                -for(let lang in repo.languages)
-                  li
-                    p= lang
-            else
-              p No languages.
-
-  
+          input(type="radio", name="visibility", value="visibility=public")
+          p Public repositories only
+        li
+          input(type="radio", name="visibility", value="visibility=private")
+          p Private repositories only
+        li
+          input(type="radio", name="visibility", value="visibility=all")
+          p Public and private repositories
+    .affiliation
+      h2 Choose your repo affiliation.
+      ul.formlist
+        li
+          input(type="checkbox", name="affiliation", value="owner")
+          p Repos you own
+        li
+          input(type="checkbox", name="affiliation", value="collaborator")
+          p Repos you've contributed to
+    .sort
+      h2 Choose your repo order.
+      ul.formlist
+        li
+          input(type="radio", name="sort", value="sort=created&direction=asc")
+          p Earliest created repos
+        li
+          input(type="radio", name="sort", value="sort=created&direction=desc")
+          p Latest created repos
+        li
+          input(type="radio", name="sort", value="sort=full_name&direction=asc")
+          p Alphabetical order
+        li
+          input(type="radio", name="sort", value="sort=updated&direction=desc")
+          p Most recently updated
+    input#submit(type="submit", value="Submit")
+    

@@ -5,8 +5,19 @@ const axios = require('axios');
 
 const app = require('../app');
 
-/* GET users listing. */
 router.get('/', async function(req, res, next) {
+  const client = req.app.locals.client;
+
+  if (!req.session.username) {
+    console.log("\n\n\n\nUsername not found\n\n\n\n");
+    res.redirect('/login');
+  }
+  else {
+    res.render('users');
+  }
+});
+
+router.all('/profile', async function(req, res, next) {
   const client = req.app.locals.client;
 
   if (!req.session.username) {
@@ -18,12 +29,14 @@ router.get('/', async function(req, res, next) {
     // result and resdata have github info
     var result = (await client.execute('SELECT * FROM users WHERE username=?', [req.session.username])).first();
     const opts = {headers: {authorization: `token ${result['githubtoken']}`}}
-    var resdata = (await axios.get(`https://api.github.com/user/repos`, opts)).data;
+    const form = req.body;
+    var resdata = (await axios.get(
+      `https://api.github.com/user/repos?${form.visibility}&affiliation=${Array.isArray(form.affiliation) ? form.affiliation.join(',') : form.affiliation}&${form.sort}`, opts
+    )).data;
 
-    var repos = {};
+    var repos = [];
   
     var firstrepos = [];
-
     let i = 1;
     for (let repo of resdata) {
       if (i++ > 10) break;
@@ -38,7 +51,7 @@ router.get('/', async function(req, res, next) {
       firstrepos.push(r);
     }
 
-    res.render('users', {user: result, repos: firstrepos});
+    res.render('profile', {user: result, repos: firstrepos});
   }
 });
 

@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1 Here's your profile, #{user.username}.
+  .contact
+    h2 #{user.username}
+    if user.email
+      h3 #{user.email}
+    h3 github.com/#{user.username}
+  .repos
+    h2 Your first 10 repos.
+    ul
+      each repo in repos
+        li
+          .repo
+            h3 #{repo.name}
+            if repo.description
+              p #{repo.description}
+            else
+              p No description provided.
+            if repo.languages
+              ul.languages
+                -for(let lang in repo.languages)
+                  li
+                    p= lang
+            else
+              p No languages.
+
+  
