@@ -1,20 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const axios = require('axios')
+const axios = require('axios');
+const session = require('express-session');
 
 const appinfo = require('../properties');
 const connectdb = require('../database');
 const app = require('../app');
 
 const client = connectdb();
-
-async function testdb() {
-  var e = await client.execute("SELECT * FROM users;");
-  console.log(e);
-}
-
-testdb();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -52,7 +46,11 @@ router.get('/oauth-callback', (req, res, next) => {
       await client.execute(
         'INSERT INTO users (username, name, email, githubtoken) VALUES (?, ?, ?, ?);',
         [resdata['login'], resdata['name'], resdata['email'], token]
-      ).then(res => {console.log("\n\nInserted items\n\n");}).catch(res => console.log(res));
+      ).
+        then(res => {console.log("\n\nInserted items\n\n");}).
+        catch(res => console.log(res));
+      
+      req.session.username = resdata['login'];
       
       res.redirect('/users/');
     }).
