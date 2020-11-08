@@ -11,6 +11,10 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+// datastax database setup
+const connectdb = require('./database');
+app.locals.client = connectdb();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

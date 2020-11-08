@@ -5,10 +5,7 @@ const axios = require('axios');
 const session = require('express-session');
 
 const appinfo = require('../properties');
-const connectdb = require('../database');
 const app = require('../app');
-
-const client = connectdb();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -20,6 +17,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.get('/oauth-callback', (req, res, next) => {
+  const client = req.app.locals.client;
 
   const body = {
     client_id: appinfo.clientId,
@@ -27,6 +25,8 @@ router.get('/oauth-callback', (req, res, next) => {
     code: req.query.code
   };
   const opts1 = { headers: { accept: 'application/json' } };
+
+  let success = true;
 
   axios.post(`https://github.com/login/oauth/access_token`, body, opts1).
     then(async res1 => {
@@ -51,12 +51,18 @@ router.get('/oauth-callback', (req, res, next) => {
         catch(res => console.log(res));
       
       req.session.username = resdata['login'];
-      req.session.client = client;
-      
-      res.redirect('/users/');
-    }).
-    catch(err => res.status(500).json({ message: err.message }));
 
+      console.log("\n\n**********");
+      console.log('ok:1');
+      console.log("**********\n\n");
+      
+    }).
+    catch(err => {
+      success = false;
+      res.status(500).json({ message: err.message });
+    });
+
+  if (success) res.redirect('/users/');
 });
 
 module.exports = router;
