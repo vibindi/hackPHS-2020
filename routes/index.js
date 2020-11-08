@@ -33,7 +33,7 @@ router.get('/oauth-callback', (req, res, next) => {
     code: req.query.code
   };
   const opts1 = { headers: { accept: 'application/json' } };
-  
+
   axios.post(`https://github.com/login/oauth/access_token`, body, opts1).
     then(async res1 => {
       var token = res1.data['access_token'];
@@ -54,7 +54,7 @@ router.get('/oauth-callback', (req, res, next) => {
         [res2.data['login'], token]
       ).then(res => {console.log("\n\nInserted items\n\n");}).catch(res => console.log(res));
       
-      res.json({ ok: 1 });
+      res.redirect('/users/');
     }).
     catch(err => res.status(500).json({ message: err.message }));
 
