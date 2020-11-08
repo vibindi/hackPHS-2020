@@ -15,17 +15,30 @@ router.get('/', async function(req, res, next) {
   }
   else {
     
-    try {
-      // result and resdata have github info
-      var result = (await client.execute('SELECT * FROM users WHERE username=?', [req.session.username])).first();
-      const opts = {headers: {authorization: `token ${result['githubtoken']}`}}
-      var resdata = (await axios.get(`https://api.github.com/user/repos`, opts)).data;
-    } catch (err) {
-      console.log("\n\n**ERROR HERE**\n\n")
-      console.log(err);
+    // result and resdata have github info
+    var result = (await client.execute('SELECT * FROM users WHERE username=?', [req.session.username])).first();
+    const opts = {headers: {authorization: `token ${result['githubtoken']}`}}
+    var resdata = (await axios.get(`https://api.github.com/user/repos`, opts)).data;
+
+    var repos = {};
+  
+    var firstrepos = [];
+
+    let i = 1;
+    for (let repo of resdata) {
+      if (i++ > 10) break;
+      var r = {};
+      var s = 0;
+
+      r.name = repo.name;
+      r.description = repo.description;
+      r.languages = (await axios.get(repo.languages_url, opts)).data;
+
+      console.log(r.languages);
+      firstrepos.push(r);
     }
 
-    res.render('users');
+    res.render('users', {user: result, repos: firstrepos});
   }
 });
 
