@@ -15,16 +15,18 @@ block content
           .repo
             h3 #{repo.name}
             if repo.description
-              p #{repo.description}
+              p.description #{repo.description}
             else
-              p No description provided.
-            if repo.languages
-              p Languages:
-              ul.languages
-                -for(let lang in repo.languages)
-                  li
-                    p= lang
-            else
-              p No languages.
+              p.description No description provided.
+            .language
+              if Object.keys(repo.languages).length>0
+                p.languagemessage #[em Languages]:
+                ul.languages
+                  -for(let lang in repo.languages)
+                    li
+                      p #[em #{lang}]
+              else
+                p.languagemessage #[em No programming languages used.]
+            p.url URL: #{repo.url}
 
   

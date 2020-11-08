@@ -72,6 +72,10 @@ h2 {
   font-size: 22px;
 }
 
+h3 {
+  font-size: 20px;
+}
+
 ul {
   padding-left: 0px;
 }
@@ -89,7 +93,37 @@ form label:hover {
   font-weight: bold;
 }
 
+.language {
+  margin: 5px 0px;
+  padding-top: 7px;
+}
+
+.languagemessage {
+  font-size: 14px;
+  display: inline;
+  padding-right: 10px;
+}
+
+.languages {
+  display: inline;
+}
+
+.languages li {
+  display: inline;
+}
+
+.languages li p {
+  display: inline;
+  padding-right: 10px;
+}
+
 form input:checked+span {
   color:  rgb(38, 173, 167);
   font-weight: bold;
+}
+
+.url {
+  font-size: 11px;
+  color: rgb(225, 225, 225);
+  margin: 10px 0px;
 }

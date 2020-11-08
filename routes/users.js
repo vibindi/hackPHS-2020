@@ -43,8 +43,9 @@ router.all('/profile', async function(req, res, next) {
 
       r.name = repo.name;
       r.description = repo.description;
+      r.url = repo.html_url;
       r.languages = (await axios.get(repo.languages_url, opts)).data;
-
+      
       repos.push(r);
     }
 
