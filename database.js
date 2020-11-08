@@ -1,6 +1,7 @@
 const {Client} = require('cassandra-driver');
 const appinfo = require('./properties');
 
+// Datastax node driver with the secure connect package
 function connect() {
   const client = new Client({
     cloud: { secureConnectBundle: 'secure-connect-hackphs.zip' },

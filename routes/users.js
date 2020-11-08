@@ -33,10 +33,8 @@ router.all('/profile', async function(req, res, next) {
     var resdata = (await axios.get(
       `https://api.github.com/user/repos?${form.visibility}&affiliation=${Array.isArray(form.affiliation) ? form.affiliation.join(',') : form.affiliation}&${form.sort}`, opts
     )).data;
-
-    var repos = [];
   
-    var firstrepos = [];
+    var repos = [];
     let i = 1;
     for (let repo of resdata) {
       if (i++ > 10) break;
@@ -47,11 +45,10 @@ router.all('/profile', async function(req, res, next) {
       r.description = repo.description;
       r.languages = (await axios.get(repo.languages_url, opts)).data;
 
-      console.log(r.languages);
-      firstrepos.push(r);
+      repos.push(r);
     }
 
-    res.render('profile', {user: result, repos: firstrepos});
+    res.render('profile', {user: result, repos: repos});
   }
 });
 

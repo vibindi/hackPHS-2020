@@ -1,11 +1,8 @@
 body {
-  padding: 50px;
+  padding: 25px 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  color: rgb(225, 225, 225);
 }
 
 nav {
@@ -20,16 +17,21 @@ nav ul {
 nav li {
 	margin: 0 2%;
 	display: inline;
-  list-style-type: none;
 }
 
 nav a {
   font-size: 20px;
-  color: black;
+  color: rgb(225, 225, 225);
 	text-decoration: none;
 }
 
 nav a:hover {
 	text-decoration: none;
   color: mediumturquoise;
+}
+
+
+
+li {
+  list-style-type: none;
 }

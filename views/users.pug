@@ -8,7 +8,7 @@ block content
       h2 Choose your privacy when parsing.
       ul.formlist
         li
-          input(type="radio", name="visibility", value="visibility=public")
+          input(type="radio", name="visibility", value="visibility=public", required="required")
           p Public repositories only
         li
           input(type="radio", name="visibility", value="visibility=private")
@@ -29,11 +29,11 @@ block content
       h2 Choose your repo order.
       ul.formlist
         li
+          input(type="radio", name="sort", value="sort=created&direction=desc", required="required")
+          p Most recently created repos
+        li
           input(type="radio", name="sort", value="sort=created&direction=asc")
           p Earliest created repos
-        li
-          input(type="radio", name="sort", value="sort=created&direction=desc")
-          p Latest created repos
         li
           input(type="radio", name="sort", value="sort=full_name&direction=asc")
           p Alphabetical order
